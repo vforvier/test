@@ -1,23 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="8dp"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="2dp">
+    app:cardCornerRadius="12dp"
+    app:cardElevation="0dp"
+    app:cardBackgroundColor="#121212"> <!-- Twitter dark card -->
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="12dp">
 
         <TextView
             android:id="@+id/contentTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"/>
+            android:textSize="16sp"
+            android:textColor="#FFFFFF" />
 
         <ImageView
             android:id="@+id/attachedImage"
@@ -25,14 +26,15 @@
             android:layout_height="200dp"
             android:layout_marginTop="8dp"
             android:scaleType="centerCrop"
-            android:visibility="gone"/>
+            android:visibility="gone"
+            android:background="@drawable/image_border"/>
 
         <TextView
             android:id="@+id/timeTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:textColor="@android:color/darker_gray"
+            android:textColor="#AAAAAA"
             android:textSize="12sp"/>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
