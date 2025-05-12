@@ -62,6 +62,7 @@ public class ComposeDialogFragment extends DialogFragment {
         }
     }
 
+
     private void postNote() {
         String content = contentEditText.getText().toString().trim();
         if (content.isEmpty() && imagePath == null) {

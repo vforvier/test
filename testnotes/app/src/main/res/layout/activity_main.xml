@@ -1,17 +1,63 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000000">
 
+    <!-- Top Tabs -->
+    <LinearLayout
+        android:id="@+id/topTabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="#1DA1F2">
+
+        <TextView
+            android:id="@+id/notesTab"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Notes"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/filesTab"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Files"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+
+    <!-- Search Bar -->
+    <EditText
+        android:id="@+id/searchEditText"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/topTabs"
+        android:layout_margin="8dp"
+        android:background="@drawable/search_background"
+        android:hint="Search notes..."
+        android:padding="10dp"
+        android:textColor="#FFFFFF"
+        android:inputType="text" />
+
+    <!-- RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/notesRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/searchEditText"
         android:padding="8dp"
         tools:ignore="SpeakableTextPresentCheck" />
 
+    <!-- FAB -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
@@ -23,5 +69,4 @@
         app:srcCompat="@drawable/ic_add"
         app:tint="@android:color/white"
         tools:ignore="SpeakableTextPresentCheck" />
-
 </RelativeLayout>

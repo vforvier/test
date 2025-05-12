@@ -11,13 +11,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHolder> {
-    private final List<Note> notes;
+    private final List<Note> originalNotes;  // all notes
+    private final List<Note> filteredNotes;  // displayed notes
 
     public NotesAdapter(List<Note> notes) {
-        this.notes = notes;
+        this.originalNotes = notes;
+        this.filteredNotes = new ArrayList<>(notes);
     }
 
     @NonNull
@@ -30,7 +33,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
 
     @Override
     public void onBindViewHolder(@NonNull NoteViewHolder holder, int position) {
-        Note note = notes.get(position);
+        Note note = filteredNotes.get(position);
         holder.contentTextView.setText(note.content);
         holder.timeTextView.setText(note.timestamp);
 
@@ -44,12 +47,47 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
 
     @Override
     public int getItemCount() {
-        return notes.size();
+        return filteredNotes.size();
+    }
+
+    // Add new note safely
+    public void addNote(Note note) {
+        originalNotes.add(0, note);
+        filteredNotes.add(0, note);
+        notifyItemInserted(0);
+    }
+
+    // Show all notes
+    public void showAllNotes() {
+        filteredNotes.clear();
+        filteredNotes.addAll(originalNotes);
+        notifyDataSetChanged();
+    }
+
+    // Show only notes with image
+    public void showFilesOnly() {
+        filteredNotes.clear();
+        for (Note note : originalNotes) {
+            if (note.imagePath != null) {
+                filteredNotes.add(note);
+            }
+        }
+        notifyDataSetChanged();
+    }
+
+    // Search by content
+    public void filter(String query) {
+        filteredNotes.clear();
+        for (Note note : originalNotes) {
+            if (note.content.toLowerCase().contains(query.toLowerCase())) {
+                filteredNotes.add(note);
+            }
+        }
+        notifyDataSetChanged();
     }
 
     static class NoteViewHolder extends RecyclerView.ViewHolder {
-        TextView contentTextView;
-        TextView timeTextView;
+        TextView contentTextView, timeTextView;
         ImageView attachedImage;
 
         public NoteViewHolder(@NonNull View itemView) {
@@ -60,3 +98,4 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
         }
     }
 }
+
