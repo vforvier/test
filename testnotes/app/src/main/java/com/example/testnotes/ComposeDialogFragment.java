@@ -73,7 +73,9 @@ public class ComposeDialogFragment extends DialogFragment {
         String timestamp = new SimpleDateFormat("MMM dd, HH:mm", Locale.getDefault())
                 .format(new Date());
 
-        Note note = new Note(content, timestamp);
+
+        Note note = new Note(content, timestamp, null);  // Pass null for the imagePath
+
         note.imagePath = imagePath;
 
         ((MainActivity)requireActivity()).addNote(note);
