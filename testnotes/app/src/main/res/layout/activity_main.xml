@@ -13,7 +13,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
-        android:background="#1DA1F2">
+        android:background="@drawable/outline"
+        >
 
         <TextView
             android:id="@+id/notesTab"
@@ -23,7 +24,8 @@
             android:gravity="center"
             android:text="Notes"
             android:textColor="#FFFFFF"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            />
 
         <TextView
             android:id="@+id/filesTab"
